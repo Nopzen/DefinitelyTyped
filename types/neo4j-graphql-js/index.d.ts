@@ -43,7 +43,7 @@ type AugmentSchemaResolverValidationOptions = {
     allowResolversNotInSchema: boolean;
 };
 
-type AugmentSchemaDirectiveResolvers = {
+type AugmentSchemaDirectives = {
     [key: string]: (next: Promise<any>, src: any, args: any[], context: any) => Promise<any>;
 };
 
@@ -86,6 +86,7 @@ type AugmentSchemaConfig = {
  * @param {boolean} allowUndefinedInResolve   __optional__ argument, which is `true` by default. When set to `false`, causes your resolver to throw errors if they return `undefined`, which can help make debugging easier.
  * @param {object} resolverValidationOptions  __optional__ argument, see: _AugmentSchemaResolverValidationOptions_
  * @param {object} directiveResolvers         __optional__ argument, _(null by default)_ and should be an object that follows the patteren explained in this {@link https://www.graphql-tools.com/docs/directive-resolvers/|article on directive resolvers}
+ * @param {object} schemaDirectives           __optional__ argument, (empty object by default) and can be used to specify the {@link https://www.graphql-tools.com/docs/legacy-schema-directives/|earlier class-based implementation of schema directives}
  */
 type MakeAugmentSchemaOptions = {
     schema?: GraphQLSchema;
@@ -96,5 +97,6 @@ type MakeAugmentSchemaOptions = {
     config?: AugmentSchemaConfig;
     allowUndefinedInResolve?: boolean;
     resolverValidationOptions?: AugmentSchemaResolverValidationOptions;
-    directiveResolvers?: AugmentSchemaDirectiveResolvers;
+    directiveResolvers?: any;
+    schemaDirectives?: AugmentSchemaDirectives;
 };
