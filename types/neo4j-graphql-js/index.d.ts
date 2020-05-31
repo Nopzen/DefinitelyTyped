@@ -15,28 +15,13 @@ declare module 'neo4j-graphql-js' {
     export function inferSchema(): any;
 }
 
-/**
- * AugmentSchemaResolvers
- * @remarks is an optional argument (empty object by default) and should be an object or an array of objects that follow the pattern explained in {@link https://www.graphql-tools.com/docs/resolvers/|article on resolvers}
- */
-
 type AugmentSchemaResolvers = {
     [key: string]: GraphQLFieldResolver<any, any, { [argName: string]: any }>;
 };
 
-/**
- * AugmentSchemaLogger
- * @remarks logger is an optional argument, which can be used to print errors to the server console that are usually swallowed by GraphQL. The logger argument should be an object with a log function, eg. `const logger = { log: e => console.log(e) }`
- */
-
 type AugmentSchemaLogger = {
     log: (msg: string) => void;
 };
-
-/**
- * AugmentSchemaParseOptions
- * @remarks is an optional argument which allows customization of parse when specifying `typeDefs` as a string.
- */
 
 type AugmentSchemaParseOptions = {
     [key: string]: any;
@@ -69,6 +54,16 @@ type AugmentSchemaConfig = {
     auth?: boolean | AugmentSchemaAuthConfig;
 };
 
+/**
+ * MakeAugmentSchemaOptions
+ * @remarks TBD
+ *
+ * @param {GraphQLSchema} schema __optional__ argument, predefined schema takes presidence over a `typeDefs` & `resolvers` combination
+ * @param {string} typeDefs      __required__ argument, and should be an GraphQL schema language string or array of GraphQL schema language strings or a function that takes no arguments and returns an array of GraphQL schema language strings. The order of the strings in the array is not important, but it must include a schema definition.
+ * @param {object} resolvers     __optional__ argument, _(empty object by default)_ and should be an object or an array of objects that follow the pattern explained in {@link https://www.graphql-tools.com/docs/resolvers/|article on resolvers}
+ * @param {object} logger        __optional__ argument, which can be used to print errors to the server console that are usually swallowed by GraphQL. The logger argument should be an object with a log function, eg. `const logger = { log: e => console.log(e) }`
+ * @param {object} parseOptions  __optional__ argument, which allows customization of parse when specifying `typeDefs` as a string.
+ */
 type MakeAugmentSchemaOptions = {
     schema?: GraphQLSchema;
     typeDefs: string;
