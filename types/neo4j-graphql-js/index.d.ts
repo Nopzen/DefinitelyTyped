@@ -43,15 +43,5 @@ type AugmentSchemaConfig = {
 };
 
 type MakeAugmentSchemaOptions = {
-    schema?: GraphQLSchema;
-    typeDefs?: string;
-    resolvers: any;
-    logger: any;
-    allowUndefinedInResolve: boolean;
-    resolverValidationOptions: any;
-    directiveResolvers: any;
-    schemaDirectives: any;
-    parseOptions: any;
-    inheritResolversFromInterfaces: boolean;
     config?: AugmentSchemaConfig;
 };
