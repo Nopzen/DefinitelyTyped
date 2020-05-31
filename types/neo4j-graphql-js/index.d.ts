@@ -44,5 +44,6 @@ type AugmentSchemaConfig = {
 
 type MakeAugmentSchemaOptions = {
     schema?: GraphQLSchema;
+    typeDefs: string;
     config?: AugmentSchemaConfig;
 };
