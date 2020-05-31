@@ -25,6 +25,15 @@ type AugmentSchemaResolvers = {
 };
 
 /**
+ * AugmentSchemaLogger
+ * @remarks logger is an optional argument, which can be used to print errors to the server console that are usually swallowed by GraphQL. The logger argument should be an object with a log function, eg. `const logger = { log: e => console.log(e) }`
+ */
+
+type AugmentSchemaLogger = {
+    log: (msg: string) => void;
+};
+
+/**
  * AugmentSchemaAuthConfig
  * @param isAuthenticated   enables `@isAuthenticated` directive, **Optional, defaults to true**
  * @param hasRole           enables `@hasRole` directive, **Optional, defaults to true**
@@ -55,5 +64,6 @@ type MakeAugmentSchemaOptions = {
     schema?: GraphQLSchema;
     typeDefs: string;
     resolvers?: AugmentSchemaResolvers;
+    logger?: AugmentSchemaLogger;
     config?: AugmentSchemaConfig;
 };
