@@ -4,7 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/neo4j-graphql-js
 // TypeScript Version: 3.8
 
-import { GraphQLSchema } from 'graphql';
+import { GraphQLSchema, GraphQLFieldResolver } from 'graphql';
 
 declare module 'neo4j-graphql-js' {
     export function makeAugmentSchema(): GraphQLSchema;
@@ -14,6 +14,15 @@ declare module 'neo4j-graphql-js' {
     export function cypherMutation(): any;
     export function inferSchema(): any;
 }
+
+/**
+ * AugmentSchemaResolvers
+ * @remarks is an optional argument (empty object by default) and should be an object or an array of objects that follow the pattern explained in {@link https://www.graphql-tools.com/docs/resolvers/|article on resolvers}
+ */
+
+type AugmentSchemaResolvers = {
+    [key: string]: GraphQLFieldResolver<any, any, { [argName: string]: any }>;
+};
 
 /**
  * AugmentSchemaAuthConfig
@@ -45,5 +54,6 @@ type AugmentSchemaConfig = {
 type MakeAugmentSchemaOptions = {
     schema?: GraphQLSchema;
     typeDefs: string;
+    resolvers?: AugmentSchemaResolvers;
     config?: AugmentSchemaConfig;
 };
