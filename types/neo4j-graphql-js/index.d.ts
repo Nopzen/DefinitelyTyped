@@ -4,15 +4,15 @@
 // Definitions: https://github.com/DefinitelyTyped/neo4j-graphql-js
 // TypeScript Version: 3.8
 
-import { GraphQLSchema } from "graphql";
+import { GraphQLSchema } from 'graphql';
 
-declare module "neo4j-graphql-js" {
-  export function makeAugmentSchema(): GraphQLSchema;
-  export function neo4jgraphql(): any;
-  export function augmentSchema(): any;
-  export function cypherQuery(): any;
-  export function cypherMutation(): any;
-  export function inferSchema(): any;
+declare module 'neo4j-graphql-js' {
+    export function makeAugmentSchema(): GraphQLSchema;
+    export function neo4jgraphql(): any;
+    export function augmentSchema(): any;
+    export function cypherQuery(): any;
+    export function cypherMutation(): any;
+    export function inferSchema(): any;
 }
 
 /**
@@ -22,9 +22,9 @@ declare module "neo4j-graphql-js" {
  * @param hasScope          enables `@hasScope` directive, **Optional, defaults to true**
  */
 type AugmentSchemaAuthConfig = {
-  isAuthenticated?: boolean;
-  hasRole?: boolean;
-  hasScope?: boolean;
+    isAuthenticated?: boolean;
+    hasRole?: boolean;
+    hasScope?: boolean;
 };
 
 /**
@@ -36,22 +36,22 @@ type AugmentSchemaAuthConfig = {
  * @param auth      Used to enable authorization schema directives (@isAuthenticated, @hasRole, @hasScope). If enabled, directives from the graphql-auth-directives are declared and can be used in the schema. If @hasScope is enabled it is automatically added to all generated query and mutation fields. See the authorization guide for more information. **Optional, defaults to `false`**
  */
 type AugmentSchemaConfig = {
-  query?: boolean | { exclude: string[] };
-  mutation?: boolean | { exclude: string[] };
-  debug?: boolean;
-  auth?: boolean | AugmentSchemaAuthConfig;
+    query?: boolean | { exclude: string[] };
+    mutation?: boolean | { exclude: string[] };
+    debug?: boolean;
+    auth?: boolean | AugmentSchemaAuthConfig;
 };
 
 type MakeAugmentSchemaOptions = {
-  schema?: GraphQLSchema;
-  typeDefs?: string;
-  resolvers: any;
-  logger: any;
-  allowUndefinedInResolve: boolean;
-  resolverValidationOptions: any;
-  directiveResolvers: any;
-  schemaDirectives: any;
-  parseOptions: any;
-  inheritResolversFromInterfaces: boolean;
-  config: AugmentSchemaConfig;
+    schema?: GraphQLSchema;
+    typeDefs?: string;
+    resolvers: any;
+    logger: any;
+    allowUndefinedInResolve: boolean;
+    resolverValidationOptions: any;
+    directiveResolvers: any;
+    schemaDirectives: any;
+    parseOptions: any;
+    inheritResolversFromInterfaces: boolean;
+    config?: AugmentSchemaConfig;
 };
