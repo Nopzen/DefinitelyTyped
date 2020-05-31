@@ -78,15 +78,16 @@ type AugmentSchemaConfig = {
  * MakeAugmentSchemaOptions
  * @remarks TBD
  *
- * @param {GraphQLSchema} schema              __optional__ argument, predefined schema takes presidence over a `typeDefs` & `resolvers` combination
- * @param {string}  typeDefs                  __required__ argument, and should be an GraphQL schema language string or array of GraphQL schema language strings or a function that takes no arguments and returns an array of GraphQL schema language strings. The order of the strings in the array is not important, but it must include a schema definition.
- * @param {object}  resolvers                 __optional__ argument, _(empty object by default)_ and should be an object or an array of objects that follow the pattern explained in {@link https://www.graphql-tools.com/docs/resolvers/|article on resolvers}
- * @param {object}  logger                    __optional__ argument, which can be used to print errors to the server console that are usually swallowed by GraphQL. The logger argument should be an object with a log function, eg. `const logger = { log: e => console.log(e) }`
- * @param {object}  parseOptions              __optional__ argument, which allows customization of parse when specifying `typeDefs` as a string.
- * @param {boolean} allowUndefinedInResolve   __optional__ argument, which is `true` by default. When set to `false`, causes your resolver to throw errors if they return `undefined`, which can help make debugging easier.
- * @param {object} resolverValidationOptions  __optional__ argument, see: _AugmentSchemaResolverValidationOptions_
- * @param {object} directiveResolvers         __optional__ argument, _(null by default)_ and should be an object that follows the patteren explained in this {@link https://www.graphql-tools.com/docs/directive-resolvers/|article on directive resolvers}
- * @param {object} schemaDirectives           __optional__ argument, (empty object by default) and can be used to specify the {@link https://www.graphql-tools.com/docs/legacy-schema-directives/|earlier class-based implementation of schema directives}
+ * @param {GraphQLSchema} schema                   __optional__ argument, predefined schema takes presidence over a `typeDefs` & `resolvers` combination
+ * @param {string}  typeDefs                       __required__ argument, and should be an GraphQL schema language string or array of GraphQL schema language strings or a function that takes no arguments and returns an array of GraphQL schema language strings. The order of the strings in the array is not important, but it must include a schema definition.
+ * @param {object}  resolvers                      __optional__ argument, _(empty object by default)_ and should be an object or an array of objects that follow the pattern explained in {@link https://www.graphql-tools.com/docs/resolvers/|article on resolvers}
+ * @param {object}  logger                         __optional__ argument, which can be used to print errors to the server console that are usually swallowed by GraphQL. The logger argument should be an object with a log function, eg. `const logger = { log: e => console.log(e) }`
+ * @param {object}  parseOptions                   __optional__ argument, which allows customization of parse when specifying `typeDefs` as a string.
+ * @param {boolean} allowUndefinedInResolve        __optional__ argument, which is `true` by default. When set to `false`, causes your resolver to throw errors if they return `undefined`, which can help make debugging easier.
+ * @param {object} resolverValidationOptions       __optional__ argument, see: _AugmentSchemaResolverValidationOptions_
+ * @param {object} directiveResolvers              __optional__ argument, _(null by default)_ and should be an object that follows the patteren explained in this {@link https://www.graphql-tools.com/docs/directive-resolvers/|article on directive resolvers}
+ * @param {object} schemaDirectives                __optional__ argument, (empty object by default) and can be used to specify the {@link https://www.graphql-tools.com/docs/legacy-schema-directives/|earlier class-based implementation of schema directives}
+ * @param {boolean} inheritResolversFromInterfaces __optional__ argument, (false by default)  GraphQL Objects that implement interfaces will inherit missing resolvers from their interface types defined in the resolvers object.
  */
 type MakeAugmentSchemaOptions = {
     schema?: GraphQLSchema;
@@ -99,4 +100,5 @@ type MakeAugmentSchemaOptions = {
     resolverValidationOptions?: AugmentSchemaResolverValidationOptions;
     directiveResolvers?: any;
     schemaDirectives?: AugmentSchemaDirectives;
+    inheritResolversFromInterfaces?: boolean;
 };
