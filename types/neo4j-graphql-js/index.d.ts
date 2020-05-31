@@ -34,6 +34,15 @@ type AugmentSchemaLogger = {
 };
 
 /**
+ * AugmentSchemaParseOptions
+ * @remarks is an optional argument which allows customization of parse when specifying `typeDefs` as a string.
+ */
+
+type AugmentSchemaParseOptions = {
+    [key: string]: any;
+};
+
+/**
  * AugmentSchemaAuthConfig
  * @param isAuthenticated   enables `@isAuthenticated` directive, **Optional, defaults to true**
  * @param hasRole           enables `@hasRole` directive, **Optional, defaults to true**
@@ -65,5 +74,6 @@ type MakeAugmentSchemaOptions = {
     typeDefs: string;
     resolvers?: AugmentSchemaResolvers;
     logger?: AugmentSchemaLogger;
+    parseOptions?: AugmentSchemaParseOptions;
     config?: AugmentSchemaConfig;
 };
