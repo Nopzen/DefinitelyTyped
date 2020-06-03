@@ -15,7 +15,7 @@ declare module 'neo4j-graphql-js' {
         resolveInfo: GraphQLResolveInfo,
         debug: boolean,
     ): ExecutionResult;
-    export function augmentSchema(): any;
+    export function augmentSchema(schema: GraphQLSchema, config: AugmentSchemaConfig): GraphQLSchema;
     export function cypherQuery(): any;
     export function cypherMutation(): any;
     export function inferSchema(): any;
