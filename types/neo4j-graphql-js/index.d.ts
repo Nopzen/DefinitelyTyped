@@ -5,14 +5,24 @@
 // TypeScript Version: 3.8
 
 declare module 'neo4j-graphql-js' {
-    import { GraphQLSchema, GraphQLFieldResolver } from 'graphql';
+    import { GraphQLSchema, GraphQLFieldResolver, GraphQLResolveInfo, ExecutionResult } from 'graphql';
 
     export function makeAugmentSchema(options: MakeAugmentSchemaOptions): GraphQLSchema;
-    export function neo4jgraphql(): any;
+    export function neo4jgraphql(
+        object: any,
+        args: RequestArguments,
+        context: any,
+        resolveInfo: GraphQLResolveInfo,
+        debug: boolean,
+    ): ExecutionResult;
     export function augmentSchema(): any;
     export function cypherQuery(): any;
     export function cypherMutation(): any;
     export function inferSchema(): any;
+
+    type RequestArguments = {
+        [key: string]: any;
+    };
 
     type AugmentSchemaResolvers = {
         [key: string]: GraphQLFieldResolver<any, any, { [argName: string]: any }>;
