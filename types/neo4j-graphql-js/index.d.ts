@@ -6,6 +6,7 @@
 
 declare module 'neo4j-graphql-js' {
     import { Driver } from 'neo4j-driver';
+    import { ApolloServerExpressConfig } from 'apollo-server-express';
     import { GraphQLSchema, GraphQLFieldResolver, GraphQLResolveInfo, ExecutionResult } from 'graphql';
 
     /**
@@ -23,14 +24,14 @@ declare module 'neo4j-graphql-js' {
      * It can be called within a resolver to generate a Cypher query and handle the database call to Neo4j to completely resolve the GraphQL request. Alternatively, use `cypherQuery` or `cypherMutation` within a resolver to only generate the Cypher query and handle the database call yourself.
      * @param {object} object                   The previous object being resolved. Rarely used for a field on the root Query type.
      * @param {RequestArguments} args           The arguments provided to the field in the GraphQL query.
-     * @param {object} context                  Value provided to every resolver and hold contextual information about the request, such as the currently logged in user, or access to a database. neo4j-graphql-js assumes a neo4j-javascript-driver instance exists in this object, under the key driver.
+     * @param {Neo4jContext} context            Value provided to every resolver and hold contextual information about the request, such as the currently logged in user, or access to a database. neo4j-graphql-js assumes a neo4j-javascript-driver instance exists in this object, under the key driver.
      * @param {GraphQLResolveInfo} resolveInfo  Holds field-specific infomation relevant to the current query as well as the GraphQL schema.
      * @param {boolean} debug                   Specifies whether to log the generated Cypher queries for each GraphQL request. Logging is enabled by default.
      */
     export function neo4jgraphql(
         object: any,
         args: RequestArguments,
-        context: any,
+        context: Neo4jContext,
         resolveInfo: GraphQLResolveInfo,
         debug: boolean,
     ): ExecutionResult;
@@ -73,6 +74,10 @@ declare module 'neo4j-graphql-js' {
      * @param {InferSchemaOptions} options
      */
     export function inferSchema(driver: Driver, options: InferSchemaOptions): Promise<InferSchemaPromise>;
+
+    interface Neo4jContext extends Partial<ApolloServerExpressConfig> {
+        driver: Driver;
+    }
 
     /**
      * InfereSchemaOptions
