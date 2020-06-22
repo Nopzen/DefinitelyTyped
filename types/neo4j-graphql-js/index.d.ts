@@ -77,7 +77,7 @@ declare module 'neo4j-graphql-js' {
      * InfereSchemaOptions
      * @param {boolean} alwaysIncludeRelationships specifies whether relationships should always be included in the type definitions as {@link https://grandstack.io/docs/neo4j-graphql-js#relationship-types|relationship types}, even if the relationships do not have properties.
      */
-    type InferSchemaOptions = {
+    interface InferSchemaOptions {
         alwaysIncludeRelationships: boolean;
     };
 
@@ -85,25 +85,25 @@ declare module 'neo4j-graphql-js' {
      * InferSchemaPromise
      * @param {string} typeDefs a string representation of the generated GraphQL type definitions in Schema Definition Language (SDL) format, inferred from the existing Neo4j database.
      */
-    type InferSchemaPromise = {
+    interface InferSchemaPromise {
         typeDefs: string;
     };
 
     type CypherResult = [string, { [key: string]: any }];
 
-    type RequestArguments = {
+    interface RequestArguments {
         [key: string]: any;
     };
 
-    type AugmentSchemaResolvers = {
+    interface AugmentSchemaResolvers {
         [key: string]: GraphQLFieldResolver<any, any, { [argName: string]: any }>;
     };
 
-    type AugmentSchemaLogger = {
+    interface AugmentSchemaLogger {
         log: (msg: string) => void;
     };
 
-    type AugmentSchemaParseOptions = {
+    interface AugmentSchemaParseOptions = {
         [key: string]: any;
     };
 
@@ -115,7 +115,7 @@ declare module 'neo4j-graphql-js' {
      * @param {boolean} requireResolversForResolveType will require a _resolveType()_ method for Interface and Union types. This can be passed in with the field resolvers as *__resolveType()*. False to disable the warning.
      * @param {boolean} allowResolversNotInSchema turns off the functionality which throws errors when resolvers are found which are not present in the schema. Defaults to `false`, to help catch common errors.
      */
-    type AugmentSchemaResolverValidationOptions = {
+    interface AugmentSchemaResolverValidationOptions {
         requireResolversForArgs: boolean;
         requireResolversForNonScalar: boolean;
         requireResolversForAllFields: boolean;
@@ -123,8 +123,8 @@ declare module 'neo4j-graphql-js' {
         allowResolversNotInSchema: boolean;
     };
 
-    type AugmentSchemaDirectives = {
-        [key: string]: (next: Promise<any>, src: any, args: any[], context: any) => Promise<any>;
+    interface AugmentSchemaDirectives {
+        [key: string]: (next: Promise<any>, src: any, args: RequestArguments, context: any) => Promise<any>;
     };
 
     /**
@@ -133,7 +133,7 @@ declare module 'neo4j-graphql-js' {
      * @param hasRole           enables `@hasRole` directive, **Optional, defaults to true**
      * @param hasScope          enables `@hasScope` directive, **Optional, defaults to true**
      */
-    type AugmentSchemaAuthConfig = {
+    interface AugmentSchemaAuthConfig {
         isAuthenticated?: boolean;
         hasRole?: boolean;
         hasScope?: boolean;
@@ -147,7 +147,7 @@ declare module 'neo4j-graphql-js' {
      * @param debug     Enable/disable logging of generated Cypher queries and parameters. **Optional, defaults to `true`**
      * @param auth      Used to enable authorization schema directives (@isAuthenticated, @hasRole, @hasScope). If enabled, directives from the graphql-auth-directives are declared and can be used in the schema. If @hasScope is enabled it is automatically added to all generated query and mutation fields. See the authorization guide for more information. **Optional, defaults to `false`**
      */
-    type AugmentSchemaConfig = {
+    interface AugmentSchemaConfig {
         query?: boolean | { exclude: string[] };
         mutation?: boolean | { exclude: string[] };
         debug?: boolean;
@@ -156,8 +156,6 @@ declare module 'neo4j-graphql-js' {
 
     /**
      * MakeAugmentSchemaOptions
-     * @remarks TBD
-     *
      * @param {GraphQLSchema} schema                   __optional__ argument, predefined schema takes presidence over a `typeDefs` & `resolvers` combination
      * @param {string}  typeDefs                       __required__ argument, and should be an GraphQL schema language string or array of GraphQL schema language strings or a function that takes no arguments and returns an array of GraphQL schema language strings. The order of the strings in the array is not important, but it must include a schema definition.
      * @param {object}  resolvers                      __optional__ argument, _(empty object by default)_ and should be an object or an array of objects that follow the pattern explained in {@link https://www.graphql-tools.com/docs/resolvers/|article on resolvers}
@@ -169,7 +167,7 @@ declare module 'neo4j-graphql-js' {
      * @param {object} schemaDirectives                __optional__ argument, (empty object by default) and can be used to specify the {@link https://www.graphql-tools.com/docs/legacy-schema-directives/|earlier class-based implementation of schema directives}
      * @param {boolean} inheritResolversFromInterfaces __optional__ argument, (false by default)  GraphQL Objects that implement interfaces will inherit missing resolvers from their interface types defined in the resolvers object.
      */
-    type MakeAugmentSchemaOptions = {
+    interface MakeAugmentSchemaOptions {
         schema?: GraphQLSchema;
         typeDefs: string;
         resolvers?: AugmentSchemaResolvers;
