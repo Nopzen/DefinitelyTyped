@@ -5,7 +5,7 @@
 // TypeScript Version: 3.8
 
 declare module 'neo4j-graphql-js' {
-    import { Driver } from "neo4j-driver";
+    import { Driver } from 'neo4j-driver';
     import { GraphQLSchema, GraphQLFieldResolver, GraphQLResolveInfo, ExecutionResult } from 'graphql';
 
     /**
@@ -80,7 +80,7 @@ declare module 'neo4j-graphql-js' {
      */
     interface InferSchemaOptions {
         alwaysIncludeRelationships: boolean;
-    };
+    }
 
     /**
      * InferSchemaPromise
@@ -88,25 +88,25 @@ declare module 'neo4j-graphql-js' {
      */
     interface InferSchemaPromise {
         typeDefs: string;
-    };
+    }
 
     type CypherResult = [string, { [key: string]: any }];
 
     interface RequestArguments {
         [key: string]: any;
-    };
+    }
 
     interface AugmentSchemaResolvers {
         [key: string]: GraphQLFieldResolver<any, any, { [argName: string]: any }>;
-    };
+    }
 
     interface AugmentSchemaLogger {
         log: (msg: string) => void;
-    };
+    }
 
-    interface AugmentSchemaParseOptions = {
+    interface AugmentSchemaParseOptions {
         [key: string]: any;
-    };
+    }
 
     /**
      * AugmentSchemaResolverValidationOptions
@@ -122,11 +122,11 @@ declare module 'neo4j-graphql-js' {
         requireResolversForAllFields: boolean;
         requireResolversForResolveType: boolean;
         allowResolversNotInSchema: boolean;
-    };
+    }
 
     interface AugmentSchemaDirectives {
         [key: string]: (next: Promise<any>, src: any, args: RequestArguments, context: any) => Promise<any>;
-    };
+    }
 
     /**
      * AugmentSchemaAuthConfig
@@ -138,7 +138,7 @@ declare module 'neo4j-graphql-js' {
         isAuthenticated?: boolean;
         hasRole?: boolean;
         hasScope?: boolean;
-    };
+    }
 
     /**
      * AugmentSchemaConfig
@@ -153,7 +153,7 @@ declare module 'neo4j-graphql-js' {
         mutation?: boolean | { exclude: string[] };
         debug?: boolean;
         auth?: boolean | AugmentSchemaAuthConfig;
-    };
+    }
 
     /**
      * MakeAugmentSchemaOptions
@@ -180,5 +180,5 @@ declare module 'neo4j-graphql-js' {
         directiveResolvers?: any;
         schemaDirectives?: AugmentSchemaDirectives;
         inheritResolversFromInterfaces?: boolean;
-    };
+    }
 }
