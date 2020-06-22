@@ -133,6 +133,10 @@ declare module 'neo4j-graphql-js' {
         [key: string]: (next: Promise<any>, src: any, args: RequestArguments, context: any) => Promise<any>;
     }
 
+    type DirectiveResolvers = {
+        [key: string]: () => any;
+    };
+
     /**
      * AugmentSchemaAuthConfig
      * @param isAuthenticated   enables `@isAuthenticated` directive, **Optional, defaults to true**
@@ -169,7 +173,7 @@ declare module 'neo4j-graphql-js' {
      * @param {object}  parseOptions                   __optional__ argument, which allows customization of parse when specifying `typeDefs` as a string.
      * @param {boolean} allowUndefinedInResolve        __optional__ argument, which is `true` by default. When set to `false`, causes your resolver to throw errors if they return `undefined`, which can help make debugging easier.
      * @param {object} resolverValidationOptions       __optional__ argument, see: _AugmentSchemaResolverValidationOptions_
-     * @param {object} directiveResolvers              __optional__ argument, _(null by default)_ and should be an object that follows the patteren explained in this {@link https://www.graphql-tools.com/docs/directive-resolvers/|article on directive resolvers}
+     * @param {object} directiveResolvers              __optional__ argument, _(null by default)_ and should be an object that follows the patteren explained in this {@link https://www.graphql-tools.com/docs/directive-resolvers /|article on directive resolvers}
      * @param {object} schemaDirectives                __optional__ argument, (empty object by default) and can be used to specify the {@link https://www.graphql-tools.com/docs/legacy-schema-directives/|earlier class-based implementation of schema directives}
      * @param {boolean} inheritResolversFromInterfaces __optional__ argument, (false by default)  GraphQL Objects that implement interfaces will inherit missing resolvers from their interface types defined in the resolvers object.
      */
@@ -182,7 +186,7 @@ declare module 'neo4j-graphql-js' {
         config?: AugmentSchemaConfig;
         allowUndefinedInResolve?: boolean;
         resolverValidationOptions?: AugmentSchemaResolverValidationOptions;
-        directiveResolvers?: any;
+        directiveResolvers?: DirectiveResolvers;
         schemaDirectives?: AugmentSchemaDirectives;
         inheritResolversFromInterfaces?: boolean;
     }
