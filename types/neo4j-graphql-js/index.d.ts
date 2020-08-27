@@ -33,7 +33,7 @@ declare module 'neo4j-graphql-js' {
         args: RequestArguments,
         context: Neo4jContext,
         resolveInfo: GraphQLResolveInfo,
-        debug: boolean,
+        debug?: boolean,
     ): ExecutionResult;
 
     /**
