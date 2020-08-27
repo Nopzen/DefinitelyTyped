@@ -7,7 +7,7 @@
 declare module 'neo4j-graphql-js' {
     import { Driver } from 'neo4j-driver';
     import { ApolloServerExpressConfig } from 'apollo-server-express';
-    import { GraphQLSchema, GraphQLFieldResolver, GraphQLResolveInfo, ExecutionResult } from 'graphql';
+    import { GraphQLSchema, GraphQLFieldResolver, GraphQLResolveInfo, ExecutionResult, DocumentNode } from 'graphql';
     import { IResolvers } from 'graphql-tools';
 
     /**
@@ -180,7 +180,7 @@ declare module 'neo4j-graphql-js' {
      */
     interface makeAugmentedSchemaOptions {
         schema?: GraphQLSchema;
-        typeDefs: string;
+        typeDefs: DocumentNode | string;
         resolvers?: AugmentSchemaResolvers | IResolvers;
         logger?: AugmentSchemaLogger;
         parseOptions?: AugmentSchemaParseOptions;
