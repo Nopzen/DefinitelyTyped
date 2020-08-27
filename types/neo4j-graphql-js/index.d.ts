@@ -10,12 +10,12 @@ declare module 'neo4j-graphql-js' {
     import { GraphQLSchema, GraphQLFieldResolver, GraphQLResolveInfo, ExecutionResult } from 'graphql';
 
     /**
-     * makeAugmentSchema
+     * makeAugmentedSchema
      * @description Wraps {@link https://www.apollographql.com/docs/apollo-server/api/apollo-server/#makeExecutableSchema|makeExecutableSchema} to create a GraphQL schema from GraphQL type definitions (SDL). Will generate Query and Mutation types for the provided type definitions and attach `neo4jgraphql` as the resolver for these queries and mutations. Either a schema or typeDefs must be provided. `resolvers` can optionally be implemented to override any of the generated Query/Mutation fields. Additional options are passed through to `makeExecutableSchema`.
      *
-     * @param {MakeAugmentSchemaOptions} options
+     * @param {makeAugmentedSchemaOptions} options
      */
-    export function makeAugmentSchema(options: MakeAugmentSchemaOptions): GraphQLSchema;
+    export function makeAugmentedSchema(options: makeAugmentedSchemaOptions): GraphQLSchema;
 
     /**
      * neo4jgraphql
@@ -165,7 +165,7 @@ declare module 'neo4j-graphql-js' {
     }
 
     /**
-     * MakeAugmentSchemaOptions
+     * makeAugmentedSchemaOptions
      * @param {GraphQLSchema} schema                   __optional__ argument, predefined schema takes presidence over a `typeDefs` & `resolvers` combination
      * @param {string}  typeDefs                       __required__ argument, and should be an GraphQL schema language string or array of GraphQL schema language strings or a function that takes no arguments and returns an array of GraphQL schema language strings. The order of the strings in the array is not important, but it must include a schema definition.
      * @param {object}  resolvers                      __optional__ argument, _(empty object by default)_ and should be an object or an array of objects that follow the pattern explained in {@link https://www.graphql-tools.com/docs/resolvers/|article on resolvers}
@@ -177,7 +177,7 @@ declare module 'neo4j-graphql-js' {
      * @param {object} schemaDirectives                __optional__ argument, (empty object by default) and can be used to specify the {@link https://www.graphql-tools.com/docs/legacy-schema-directives/|earlier class-based implementation of schema directives}
      * @param {boolean} inheritResolversFromInterfaces __optional__ argument, (false by default)  GraphQL Objects that implement interfaces will inherit missing resolvers from their interface types defined in the resolvers object.
      */
-    interface MakeAugmentSchemaOptions {
+    interface makeAugmentedSchemaOptions {
         schema?: GraphQLSchema;
         typeDefs: string;
         resolvers?: AugmentSchemaResolvers;
