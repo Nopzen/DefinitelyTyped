@@ -4,6 +4,8 @@
 // Definitions: https://github.com/DefinitelyTyped/neo4j-graphql-js
 // TypeScript Version: 3.8
 
+/* eslint no-unused-vars: "off" */
+
 declare module 'neo4j-graphql-js' {
     import { Driver } from 'neo4j-driver';
     import { ApolloServerExpressConfig } from 'apollo-server-express';
@@ -26,7 +28,7 @@ declare module 'neo4j-graphql-js' {
      * @param {object} object                   The previous object being resolved. Rarely used for a field on the root Query type.
      * @param {RequestArguments} args           The arguments provided to the field in the GraphQL query.
      * @param {Neo4jContext} context            Value provided to every resolver and hold contextual information about the request, such as the currently logged in user, or access to a database. neo4j-graphql-js assumes a neo4j-javascript-driver instance exists in this object, under the key driver.
-     * @param {GraphQLResolveInfo} resolveInfo  Holds field-specific infomation relevant to the current query as well as the GraphQL schema.
+     * @param {GraphQLResolveInfo} resolveInfo  Holds field-specific information relevant to the current query as well as the GraphQL schema.
      * @param {boolean} debug                   Specifies whether to log the generated Cypher queries for each GraphQL request. Logging is enabled by default.
      */
     export function neo4jgraphql(
@@ -134,9 +136,7 @@ declare module 'neo4j-graphql-js' {
         [key: string]: (next: Promise<any>, src: any, args: RequestArguments, context: any) => Promise<any>;
     }
 
-    type DirectiveResolvers = {
-        [key: string]: () => any;
-    };
+    type DirectiveResolvers = Record<string, () => any>;
 
     /**
      * AugmentSchemaAuthConfig
@@ -174,7 +174,7 @@ declare module 'neo4j-graphql-js' {
      * @param {object}  parseOptions                   __optional__ argument, which allows customization of parse when specifying `typeDefs` as a string.
      * @param {boolean} allowUndefinedInResolve        __optional__ argument, which is `true` by default. When set to `false`, causes your resolver to throw errors if they return `undefined`, which can help make debugging easier.
      * @param {object} resolverValidationOptions       __optional__ argument, see: _AugmentSchemaResolverValidationOptions_
-     * @param {object} directiveResolvers              __optional__ argument, _(null by default)_ and should be an object that follows the patteren explained in this {@link https://www.graphql-tools.com/docs/directive-resolvers /|article on directive resolvers}
+     * @param {object} directiveResolvers              __optional__ argument, _(null by default)_ and should be an object that follows the pattern explained in this {@link https://www.graphql-tools.com/docs/directive-resolvers /|article on directive resolvers}
      * @param {object} schemaDirectives                __optional__ argument, (empty object by default) and can be used to specify the {@link https://www.graphql-tools.com/docs/legacy-schema-directives/|earlier class-based implementation of schema directives}
      * @param {boolean} inheritResolversFromInterfaces __optional__ argument, (false by default)  GraphQL Objects that implement interfaces will inherit missing resolvers from their interface types defined in the resolvers object.
      */
