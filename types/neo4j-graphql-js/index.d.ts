@@ -8,7 +8,6 @@
 
 declare module 'neo4j-graphql-js' {
     import { Driver } from 'neo4j-driver';
-    import { ApolloServerExpressConfig } from 'apollo-server-express';
     import { GraphQLSchema, GraphQLFieldResolver, GraphQLResolveInfo, ExecutionResult, DocumentNode } from 'graphql';
     import { IResolvers } from 'graphql-tools';
 
@@ -78,9 +77,9 @@ declare module 'neo4j-graphql-js' {
      */
     export function inferSchema(driver: Driver, options: InferSchemaOptions): Promise<InferSchemaPromise>;
 
-    interface Neo4jContext extends Partial<ApolloServerExpressConfig> {
+    type Neo4jContext<T = Record<string, any>> = T & {
         driver: Driver;
-    }
+    };
 
     /**
      * InfereSchemaOptions
